@@ -13,12 +13,22 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="CenterContainer" type="CenterContainer" parent="."]
-margin_right = 512.0
-margin_bottom = 600.0
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+margin_left = 512.0
+margin_top = 600.0
+margin_right = 1024.0
+margin_bottom = 1200.0
+rect_rotation = 180.0
+scroll_horizontal_enabled = false
+scroll_vertical = 10
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="Scrolling-Text" type="Label" parent="CenterContainer"]
-margin_left = 256.0
-margin_top = 293.0
-margin_right = 256.0
-margin_bottom = 307.0
+[node name="Scrolling-Text" type="Label" parent="ScrollContainer"]
+margin_left = 512.0
+margin_top = 14.0
+margin_right = 549.0
+margin_bottom = 28.0
+rect_rotation = 180.0
+text = "BRUH"
