@@ -1,7 +1,7 @@
 extends Control
 
 
-var text = ['In the year 2076 the perfect cheeseburger was forged;' , 'with its toasted buns, delicious cheese, crunchy pickles, and medium well done juicy double patties...', 'it highlighted the progress of humankind.', 'The creator of such an extraordinary burger was Dr. W,...', 'an expert in the creation of burgers.', 'While in space, aliens stole the distinguished Cheeseburger, damaging his ship in the process.', 'Now, Dr. W must fix his ship and begin the quest for the lost cheeseburger.']
+var text = ['In the year 2076 the perfect cheeseburger was forged;' , 'with its toasted buns, delicious cheese, crunchy pickles, and medium well done juicy double patties...', 'it highlighted the progress of humankind.', 'The creator of such an extraordinary burger was Dr. W,...', 'an expert in the creation of burgers.', 'While in space, aliens stole the distinguished Cheeseburger, damaging his ship in the process.', 'Now, Dr. W must fix his ship and begin the quest for the lost cheeseburger.', '', 'Press Space to Continue']
 
 var counter = 0
 var prev = -1
@@ -26,6 +26,8 @@ func _ready():
 	top = get_node("VBoxContainer/Text")
 
 func _process(_delta):
+	check_input()
+	
 	counter += 1
 	nodes = counter / delay
 	_add_node()
@@ -38,6 +40,7 @@ func _add_node():
 		
 		var new = Label.new()
 		new.add_font_override("font", load("res://assets/fonts/loaded-fonts/Ubuntu-16.tres"))
+		new.align= Label.ALIGN_LEFT
 		new.text = text[nodes]
 		
 		subcontainer.add_child(new)
@@ -48,3 +51,10 @@ func _add_node():
 		container.add_constant_override("separation", separation)
 		
 	prev = nodes
+
+func next_scene():
+	get_tree().change_scene("res://scenes/open-space/Main.tscn")
+
+func check_input():
+	if Input.is_action_just_pressed("skip_dialogue"):
+		next_scene()

@@ -1,13 +1,13 @@
 extends KinematicBody2D
 
-var gravity = 20
+var gravity = 27
 var friction = 15
 var pos = Vector2(position.x, position.y)
 var velocity = Vector2(0,-10)
 var jumping = false
 var on_floor = false
 
-var jump_strength = -600
+var jump_strength = -900
 var speed = 300
 
 # Called when the node enters the scene tree for the first time.
@@ -17,6 +17,9 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
+	
+	# use velocity
+	velocity = move_and_slide(velocity, Vector2(0, -1))
 	
 	# gross friction calculation
 	if velocity.x > 0:
@@ -28,23 +31,25 @@ func _process(_delta):
 			velocity.x = 0
 		velocity.x = velocity.x + friction
 	
+	# gravity calculation
+	velocity.y += gravity
+	
 	# collision detection
 	for i in get_slide_count():
-		if get_slide_collision(i).collider.name == "Tiles":
-			on_floor = true
-			velocity.y = 0
+		if get_slide_collision(i).collider.name == "Fuel":
+			emit_signal("collided", get_slide_collision(i).collider)
+
 	
 	# input detection
 	check_input()
 	
-	# gravity calculation
-	velocity.y += gravity
 	
-	# use velocity
-	move_and_slide(velocity)
+	
+
+	
 
 func jump():
-	if on_floor:
+	if is_on_floor():
 		velocity.y = jump_strength
 		on_floor = false
 

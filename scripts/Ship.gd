@@ -15,11 +15,11 @@ func _process(delta):
 	
 	check_input()
 	
-	friction()
+	apply_friction()
 	
 	move_and_slide(velocity)
 
-func friction():
+func apply_friction():
 	if velocity.x > 0:
 		velocity.x -= friction
 	if velocity.x < 0:

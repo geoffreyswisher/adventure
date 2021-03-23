@@ -7,4 +7,4 @@ func _ready():
 
 
 func _play_button_pressed():
-	print('Play Pressed')
+	get_tree().change_scene("res://scenes/intro-cutscene/Main.tscn")
