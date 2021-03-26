@@ -4,8 +4,7 @@ extends KinematicBody2D
 
 var velocity = Vector2(0,-10)
 
-var crush_strength = 500
-var speed = 800
+var speed = 50
 
 var move = Vector2.ZERO
 
@@ -24,30 +23,18 @@ func _process(_delta):
 		if get_slide_collision(i).collider.name == "Fuel":
 			emit_signal("collided", get_slide_collision(i).collider)
 
-func rand_crush():
-	var t = rand_range(0, 0.1)
-	yield(get_tree().create_timer(t), 'timeout')
-	velocity.y = crush_strength
-	print('crushed')
 
 func _physics_process(delta):
 	
 	if player != null:
 		move = position.direction_to(player.position) * speed
-		if (move.y > 0): move.y = 0
-		if player.position.y > position.y + 100 and abs(player.position.x - position.x) < 2:
-			rand_crush()
 	else:
 		move = Vector2.ZERO
-	
-	if position.y > 175: move.y -= 1000
 	
 	move = move.normalized()
 	move = move_and_collide(move)
 
-func _on_Area2D_body_entered(body):
+func _on_Area2D_body_shape_entered(body_id, body, body_shape, area_shape):
 	if body != self and body.is_class('KinematicBody2D') and body.name == 'Player':
 		player = body
-	else:
-		player = null
 
