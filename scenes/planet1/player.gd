@@ -7,19 +7,20 @@ var velocity = Vector2(0,-10)
 var jumping = false
 var on_floor = false
 
-var jump_strength = -900
+var jump_strength = -1100
 var speed = 300
 
-
+# Called when the node enters the scene tree for the first time.
 func _ready():
-	pass
+	pass # Replace with function body.
 
 
+# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
 	
 	# use velocity
 	velocity = move_and_slide(velocity, Vector2(0, -1))
-	
+
 	# gross friction calculation
 	if velocity.x > 0:
 		if velocity.x < friction:
@@ -30,27 +31,19 @@ func _process(_delta):
 			velocity.x = 0
 		velocity.x = velocity.x + friction
 	
+	
+
 	# gravity calculation
 	velocity.y += gravity
-	
+
 	# collision detection
 	for i in get_slide_count():
 		if get_slide_collision(i).collider.name == "Fuel":
-			save_data(load_fuel()+1, load_parts())
-			get_tree().change_scene("res://scenes/open-space/Main.tscn")
-		
-		if get_slide_collision(i).collider.name == "Part":
-			save_data(load_fuel(), load_parts()+1)
-			get_tree().change_scene("res://scenes/open-space/Main.tscn")
+			emit_signal("collided", get_slide_collision(i).collider)
 
 	
 	# input detection
 	check_input()
-	
-	
-	
-
-	
 
 func jump():
 	if is_on_floor():
@@ -64,24 +57,3 @@ func check_input():
 		velocity.x = -speed
 	if Input.is_action_pressed("plat_right"):
 		velocity.x = speed
-
-
-
-func load_data():
-	var f = File.new()
-	f.open('user://data.save', File.READ)
-	var ret = f.get_as_text()
-	return ret
-	
-func load_fuel():
-	return int(load_data().substr(0, 3))
-	
-func load_parts():
-	return int(load_data().substr(3, 6))
-
-func save_data(fuel, parts):
-	var f = File.new()
-	f.open('user://data.save', File.WRITE)
-	f.store_string('%02d\n%02d' % [fuel, parts])
-
-
