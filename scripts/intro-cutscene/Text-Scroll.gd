@@ -1,7 +1,10 @@
+#warnings-disable
+
 extends Control
 
 
-var text = ['In the year 2076 the perfect cheeseburger was forged;' , 'with its toasted buns, delicious cheese, crunchy pickles, and medium well done juicy double patties...', 'it highlighted the progress of humankind.', 'The creator of such an extraordinary burger was Dr. W,...', 'an expert in the creation of burgers.', 'While in space, aliens stole the distinguished Cheeseburger, damaging his ship in the process.', 'Now, Dr. W must fix his ship and begin the quest for the lost cheeseburger.', '', 'Press Space to Continue']
+var text = ['In the year 2076 the perfect cheeseburger was forged;' , 'with its toasted buns, delicious cheese, crunchy pickles, and medium well done juicy double patties...', 'it highlighted the progress of humankind.', 'The creator of such an extraordinary burger was Dr. W,...', 'an expert in the creation of burgers.', 'While in space, aliens stole the distinguished Cheeseburger, damaging his ship in the process.', 'Now, Dr. W must fix his ship and begin the quest for the lost cheeseburger.', '', 'Acting as Dr. W, you must acquire 2 parts from different planets...', 'and 3 containers of fuel.', 'Use WASD/arrow keys to move and jump and use Space to jump.', 'In order to enter a planet, press Enter when near it.', 'Press Enter to Continue']
+var text2 = ['Congratulations! You have succesfully acquired...', 'all the necessary parts in order to fix your ship!', 'After rebuilding his ship,', 'Dr. W will continue his quest:', 'The QUEST FOR THE LOST CHEESEBURGER']
 
 var counter = 0
 var prev = -1
@@ -24,6 +27,10 @@ func _ready():
 	subcontainer = get_node("VBoxContainer/VBoxContainer")
 	subcontainer.add_constant_override("separation", paragraph_spacing)
 	top = get_node("VBoxContainer/Text")
+	
+	if (get_tree().get_current_scene().name == "Final"):
+		top.text = "Resolution"
+		text = text2
 
 func _process(_delta):
 	check_input()
@@ -57,4 +64,8 @@ func next_scene():
 
 func check_input():
 	if Input.is_action_just_pressed("skip_dialogue"):
-		next_scene()
+		if (get_tree().get_current_scene().name != "Final"):
+			next_scene()
+	if Input.is_action_just_pressed("ui_cancel"):
+		if (get_tree().get_current_scene().name == "Final"):
+			get_tree().quit()

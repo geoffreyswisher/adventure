@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://scenes/intro-cutscene/Text-Scroll.tscn" type="PackedScene" id=1]
+
+[node name="Final" type="Node2D"]
+
+[node name="Text-Scroll" parent="." instance=ExtResource( 1 )]
+margin_left = 80.0
+margin_right = 665.0
+margin_bottom = 600.0

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/green-planet-outside.PNG-c611b36a4ba55937edba4c0eaf476e5c.stex"
+path="res://.import/Player-jump.PNG-490a0d2b885c56bd3bc425e197dc0ef3.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/green-planet-outside.PNG"
-dest_files=[ "res://.import/green-planet-outside.PNG-c611b36a4ba55937edba4c0eaf476e5c.stex" ]
+source_file="res://assets/Player-jump.PNG"
+dest_files=[ "res://.import/Player-jump.PNG-490a0d2b885c56bd3bc425e197dc0ef3.stex" ]
 
 [params]
 

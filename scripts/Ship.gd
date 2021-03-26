@@ -24,6 +24,9 @@ func _ready():
 	part_label = get_node("UI/Bar/marg/Bar/Parts/Parts")
 	part_label.text = str(load_parts())
 	
+	if (load_parts() > 1 and load_fuel() > 2):
+		get_tree().change_scene("res://scenes/end-cutscene/Final.tscn")
+	
 	
 	get_node('../Planets/Oil-Planet-1/Area2D').connect("body_entered", self, 'oil1_entered')
 	get_node('../Planets/Oil-Planet-1/Area2D').connect("body_exited", self, 'oil1_exited')
@@ -83,6 +86,8 @@ func _process(delta):
 	apply_friction()
 	
 	velocity = move_and_slide(velocity)
+	
+	$AnimationPlayer.play("Ship-Thrust")
 
 func apply_friction():
 	if velocity.x > 0:
@@ -97,15 +102,19 @@ func apply_friction():
 
 func check_input():
 	if Input.is_action_pressed("move_left"):
+		$Sprite.rotation_degrees = 270
 		if velocity.x > -speed_cap:
 			velocity.x -= speed
 	if Input.is_action_pressed("move_right"):
+		$Sprite.rotation_degrees = 90
 		if velocity.x < speed_cap:
 			velocity.x += speed
 	if Input.is_action_pressed("move_up"):
+		$Sprite.rotation_degrees = 0
 		if velocity.y > -speed_cap:
 			velocity.y -= speed
 	if Input.is_action_pressed("move_down"):
+		$Sprite.rotation_degrees = 180
 		if velocity.y < speed_cap:
 			velocity.y += speed
 			

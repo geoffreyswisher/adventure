@@ -1,8 +1,8 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://assets/pink-world.png" type="Texture" id=1]
 [ext_resource path="res://scenes/Player.tscn" type="PackedScene" id=2]
-[ext_resource path="res://assets/Parts.png" type="Texture" id=3]
+[ext_resource path="res://scenes/Part.tscn" type="PackedScene" id=3]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 0, 0, 64, 0, 64, 64, 0, 64 )
@@ -318,9 +318,6 @@ points = PoolVector2Array( 64, 64, 0, 64, 0, 0, 64, 0 )
 } ]
 12/z_index = 0
 
-[sub_resource type="RectangleShape2D" id=15]
-extents = Vector2( 27.2376, 28.2504 )
-
 [node name="Main" type="Node2D"]
 
 [node name="Tiles" type="TileMap" parent="."]
@@ -330,14 +327,4 @@ tile_data = PoolIntArray( -7, 5, 0, -6, 1, 0, -5, 1, 0, -4, 1, 0, -3, 1, 0, -2, 
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
 
-[node name="Part" type="StaticBody2D" parent="."]
-position = Vector2( 1155.05, 222.491 )
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="Part" type="Sprite" parent="Part"]
-texture = ExtResource( 3 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Part"]
-shape = SubResource( 15 )
+[node name="Part" parent="." instance=ExtResource( 3 )]

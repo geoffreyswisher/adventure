@@ -1,4 +1,7 @@
+#warnings-disable
+
 extends KinematicBody2D
+
 
 # enemy #1: flies over player and tries to crush them
 
@@ -28,7 +31,6 @@ func rand_crush():
 	var t = rand_range(0, 0.1)
 	yield(get_tree().create_timer(t), 'timeout')
 	velocity.y = crush_strength
-	print('crushed')
 
 func _physics_process(delta):
 	
@@ -44,6 +46,8 @@ func _physics_process(delta):
 	
 	move = move.normalized()
 	move = move_and_collide(move)
+	
+	$AnimationPlayer.play("Flap")
 
 func _on_Area2D_body_entered(body):
 	if body != self and body.is_class('KinematicBody2D') and body.name == 'Player':

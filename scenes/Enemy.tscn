@@ -1,10 +1,11 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://scenes/planet1/enemy.gd" type="Script" id=1]
-[ext_resource path="res://icon.png" type="Texture" id=2]
+[ext_resource path="res://scenes/Flap.tres" type="Animation" id=2]
+[ext_resource path="res://assets/Bat-anim.PNG" type="Texture" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 44.2743, 44.087 )
+extents = Vector2( 44.2743, 14.4699 )
 
 [sub_resource type="CircleShape2D" id=2]
 radius = 365.057
@@ -17,19 +18,23 @@ __meta__ = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 0.0495465, 0.862605 )
+position = Vector2( 0.05, -2 )
 shape = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="."]
 position = Vector2( 0.431152, 0.293936 )
 scale = Vector2( 1.54256, 1.54036 )
-texture = ExtResource( 2 )
+texture = ExtResource( 3 )
+vframes = 2
+hframes = 2
+frame = 1
 
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2( 1.18921, -4.16223 )
 shape = SubResource( 2 )
-[connection signal="area_entered" from="Area2D" to="." method="_on_Area2D_area_entered"]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/Flap = ExtResource( 2 )
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
-[connection signal="body_shape_exited" from="Area2D" to="." method="_on_Area2D_body_shape_exited"]

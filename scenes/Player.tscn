@@ -1,21 +1,61 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://scripts/player.gd" type="Script" id=1]
-[ext_resource path="res://icon.png" type="Texture" id=2]
+[ext_resource path="res://assets/Player-walk.PNG" type="Texture" id=2]
+[ext_resource path="res://assets/Player-jump.PNG" type="Texture" id=3]
+[ext_resource path="res://scenes/Walk.tres" type="Animation" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 32, 32 )
+extents = Vector2( 33.1205, 27.9586 )
+
+[sub_resource type="Animation" id=2]
+resource_name = "Jump"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/path = NodePath("Jump:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 1, 2, 2 ]
+}
 
 [node name="Player" type="KinematicBody2D"]
 position = Vector2( 160, 344 )
 script = ExtResource( 1 )
 
-[node name="player" type="Sprite" parent="."]
-modulate = Color( 0.717647, 0.968627, 0.0313726, 1 )
+[node name="Idle" type="Sprite" parent="."]
+visible = false
+position = Vector2( 2.43465, -31.5402 )
 texture = ExtResource( 2 )
+vframes = 2
+hframes = 2
+
+[node name="Walk" type="Sprite" parent="."]
+visible = false
+position = Vector2( 3.1748, -32.5417 )
+texture = ExtResource( 2 )
+vframes = 2
+hframes = 2
+frame = 3
+
+[node name="Jump" type="Sprite" parent="."]
+position = Vector2( 2.73198, -32.3174 )
+texture = ExtResource( 3 )
+vframes = 2
+hframes = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0.793701, 3.77008 )
 shape = SubResource( 1 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/Jump = SubResource( 2 )
+anims/Walk = ExtResource( 4 )

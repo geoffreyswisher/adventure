@@ -1,3 +1,4 @@
+#warnings-disable
 extends TileMap
 
 

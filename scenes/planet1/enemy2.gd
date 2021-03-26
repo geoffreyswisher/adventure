@@ -1,3 +1,4 @@
+#warnings-disable
 extends KinematicBody2D
 
 # enemy #1: flies over player and tries to crush them
@@ -33,6 +34,8 @@ func _physics_process(delta):
 	
 	move = move.normalized()
 	move = move_and_collide(move)
+	
+	$AnimationPlayer.play("Flap")
 
 func _on_Area2D_body_shape_entered(body_id, body, body_shape, area_shape):
 	if body != self and body.is_class('KinematicBody2D') and body.name == 'Player':
