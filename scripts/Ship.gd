@@ -120,11 +120,11 @@ func check_input():
 			
 	if Input.is_action_just_pressed("skip_dialogue"):
 		if oil1_in:
-			get_tree().change_scene("res://scenes/random-planet/Main.tscn")
+			get_tree().change_scene("res://scenes/oil-planets/1.tscn")
 		if oil2_in:
-			get_tree().change_scene("res://scenes/random-planet/Main.tscn")
+			get_tree().change_scene("res://scenes/oil-planets/2.tscn")
 		if oil3_in:
-			get_tree().change_scene("res://scenes/random-planet/Main.tscn")
+			get_tree().change_scene("res://scenes/oil-planets/3.tscn")
 		if pp_in:
 			get_tree().change_scene("res://scenes/planet2/Main.tscn")
 		if gp_in:

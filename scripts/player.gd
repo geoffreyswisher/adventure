@@ -87,6 +87,10 @@ func _process(_delta):
 		$Idle.show()
 		$Walk.hide()
 		$Jump.hide()
+		
+		
+	if position.y > 1000:
+		position = pos0
 
 	
 

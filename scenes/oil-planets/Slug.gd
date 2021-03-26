@@ -3,7 +3,7 @@
 extends KinematicBody2D
 
 var speed = 100
-var distance = 300
+var distance = 200
 var pos0
 var velocity = Vector2(-speed, 0)
 
