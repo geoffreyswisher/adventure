@@ -6,8 +6,10 @@ var speed_cap = 200
 var friction = 2
 var velocity = Vector2()
 
+var part_label = null
+
 func _ready():
-	pass
+	part_label = get_node("UI/Bar/marg/Bar/Sprite/Parts")
 
 
 
@@ -17,7 +19,10 @@ func _process(delta):
 	
 	apply_friction()
 	
-	move_and_slide(velocity)
+	if abs(position.x) > 2000 or abs(position.y) > 1000:
+		velocity = Vector2(0,0)
+	
+	velocity = move_and_slide(velocity)
 
 func apply_friction():
 	if velocity.x > 0:

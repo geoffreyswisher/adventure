@@ -37,7 +37,7 @@ func _process(_delta):
 	# collision detection
 	for i in get_slide_count():
 		if get_slide_collision(i).collider.name == "Fuel":
-			emit_signal("collided", get_slide_collision(i).collider)
+			get_tree().change_scene("res://scenes/open-space/Main.tscn")
 
 	
 	# input detection
