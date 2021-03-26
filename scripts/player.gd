@@ -9,10 +9,12 @@ var on_floor = false
 
 var jump_strength = -900
 var speed = 300
+var lives = 3
 
+var pos0
 
 func _ready():
-	pass
+	pos0 = position
 
 
 func _process(_delta):
@@ -42,7 +44,9 @@ func _process(_delta):
 		if get_slide_collision(i).collider.name == "Part":
 			save_data(load_fuel(), load_parts()+1)
 			get_tree().change_scene("res://scenes/open-space/Main.tscn")
-
+			
+		if get_slide_collision(i).collider.name.substr(0,4) == "Slug":
+			position = pos0
 	
 	# input detection
 	check_input()

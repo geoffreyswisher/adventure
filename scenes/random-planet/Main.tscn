@@ -2,7 +2,7 @@
 
 [ext_resource path="res://scenes/random-planet/tile-set.tres" type="TileSet" id=1]
 [ext_resource path="res://scenes/Player.tscn" type="PackedScene" id=2]
-[ext_resource path="res://scripts/random-planet/Fuel.gd" type="Script" id=3]
+[ext_resource path="res://scenes/oil-planets/Fuel.tscn" type="PackedScene" id=3]
 
 [node name="Main" type="Node2D"]
 
@@ -14,8 +14,5 @@ tile_data = PoolIntArray( 131086, 0, 0, 131087, 1, 0, 131088, 1, 0, 131089, 1, 0
 [node name="Player" parent="." instance=ExtResource( 2 )]
 position = Vector2( 256, 384 )
 
-[node name="Fuel" type="TileMap" parent="."]
-tile_set = ExtResource( 1 )
-format = 1
-tile_data = PoolIntArray( 65552, 13, 0 )
-script = ExtResource( 3 )
+[node name="Fuel" parent="." instance=ExtResource( 3 )]
+position = Vector2( 1477.27, 214.692 )

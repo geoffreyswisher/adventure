@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://scenes/oil-planets/Slug.gd" type="Script" id=1]
+[ext_resource path="res://assets/Slug-anim.png" type="Texture" id=2]
+[ext_resource path="res://scenes/oil-planets/slug-wiggle.tres" type="Animation" id=3]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 29.3288, 17.4274 )
+
+[node name="Slug" type="KinematicBody2D"]
+position = Vector2( 960.921, 365.927 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 0.5, -15.5 )
+texture = ExtResource( 2 )
+hframes = 2
+frame = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/wiggle = ExtResource( 3 )
